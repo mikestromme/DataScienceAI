@@ -9,7 +9,7 @@ varName = os.getenv("varName")
 
 
 # Load the data
-labor_df = pd.read_csv('/Users/mikes/Desktop/labor.csv')
+labor_df = pd.read_csv('/Users/mikes/Desktop/files/labor.csv')
 
 # Display the first few rows of the data
 labor_df.head()
