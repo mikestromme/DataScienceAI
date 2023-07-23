@@ -1,4 +1,12 @@
 import pandas as pd
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+varName = os.getenv("varName")
+
+
 
 # Load the data
 labor_df = pd.read_csv('/Users/mikes/Desktop/labor.csv')
@@ -45,7 +53,5 @@ total_hours_adjusted = total_days * 8
 
 # Calculate the average hours per day spent on the task after adjustment
 average_hours_per_day_adjusted = total_hours / total_hours_adjusted
-
-average_hours_per_day_adjusted
 
 print(f"The average hours per day spent on the task '02000400 Branch Wire & Conduit' after adjustment is {average_hours_per_day_adjusted} hours.")
