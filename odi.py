@@ -1,5 +1,8 @@
 from zipfile import ZipFile
 import os
+import pandas as pd
+import numpy as np
+from datetime import datetime
 
 # Path of the zip file
 zip_path = "data/O2Ring_20230724.zip"
@@ -16,8 +19,6 @@ with ZipFile(zip_path, 'r') as zip_ref:
 unzipped_files = os.listdir(unzip_folder)
 unzipped_files
 
-
-import pandas as pd
 
 # Load the first CSV file as a sample
 sample_file_path = os.path.join(unzip_folder, unzipped_files[0])
@@ -68,3 +69,22 @@ dips = (filtered_data['Oxygen Level'] < baseline_oxygen_level - 4)
 
 # Display the baseline oxygen level and the first few values of dips
 baseline_oxygen_level, dips.head()
+
+
+# Count the number of dips
+num_dips = np.sum((dips.diff() == 1) & dips)
+
+# Calculate the total duration of sleep in hours
+# First, convert the 'Time' column to datetime
+filtered_data['Time'] = pd.to_datetime(filtered_data['Time'], format='%H:%M:%S %b %d %Y')
+# Then calculate the duration from the first to the last timestamp
+total_duration_hours = (filtered_data['Time'].max() - filtered_data['Time'].min()).total_seconds() / 3600
+
+# Calculate the Oxygen Desaturation Index (ODI)
+ODI = num_dips / total_duration_hours
+
+# Display the number of dips, total duration in hours, and the ODI
+num_dips, total_duration_hours, ODI
+
+print(ODI)
+
