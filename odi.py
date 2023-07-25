@@ -76,7 +76,9 @@ num_dips = np.sum((dips.diff() == 1) & dips)
 
 # Calculate the total duration of sleep in hours
 # First, convert the 'Time' column to datetime
+filtered_data = all_data[all_data['Oxygen Level'] != 255].copy()
 filtered_data['Time'] = pd.to_datetime(filtered_data['Time'], format='%H:%M:%S %b %d %Y')
+
 # Then calculate the duration from the first to the last timestamp
 total_duration_hours = (filtered_data['Time'].max() - filtered_data['Time'].min()).total_seconds() / 3600
 
