@@ -11,7 +11,7 @@ unzip_folder = "data/unzipped"
 # Create a folder to unzip the files into
 os.makedirs(unzip_folder, exist_ok=True)
 
-# Unzip the file
+# Unzip the file - does not duplicate files
 with ZipFile(zip_path, 'r') as zip_ref:
     zip_ref.extractall(unzip_folder)
 
@@ -25,7 +25,8 @@ sample_file_path = os.path.join(unzip_folder, unzipped_files[0])
 sample_data = pd.read_csv(sample_file_path)
 
 # Display the first few rows of the sample data
-sample_data.head()
+print(sample_data.head())
+
 
 # Initialize an empty DataFrame
 all_data = pd.DataFrame()
@@ -88,5 +89,8 @@ ODI = num_dips / total_duration_hours
 # Display the number of dips, total duration in hours, and the ODI
 num_dips, total_duration_hours, ODI
 
-print(ODI)
+print('\n')
+print(f'Number of Dips less than 4% of baseline: {str(num_dips)}')
+print(f'Total Duration in Hours:  {total_duration_hours}')
+print(f'Oxygen Saturation Index: {ODI}')
 
