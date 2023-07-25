@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Path of the zip file
-zip_path = "data/O2Ring_20230724.zip"
+zip_path = "data/O2Ring.zip"
 unzip_folder = "data/unzipped"
 
 # Create a folder to unzip the files into
@@ -93,4 +93,13 @@ print('\n')
 print(f'Number of Dips less than 4% of baseline: {str(num_dips)}')
 print(f'Total Duration in Hours:  {total_duration_hours}')
 print(f'Oxygen Saturation Index: {ODI}')
+
+
+# Delete all files in the unzipped folder
+for filename in os.listdir(unzip_folder):
+    file_path = os.path.join(unzip_folder, filename)
+    # Make sure the file is not a directory
+    if os.path.isfile(file_path):
+        os.remove(file_path)
+
 
