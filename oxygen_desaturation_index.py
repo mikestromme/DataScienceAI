@@ -25,7 +25,7 @@ sample_file_path = os.path.join(unzip_folder, unzipped_files[0])
 sample_data = pd.read_csv(sample_file_path)
 
 # Display the first few rows of the sample data
-print(sample_data.head())
+#(sample_data.head())
 
 
 # Initialize an empty DataFrame
@@ -92,7 +92,7 @@ num_dips, total_duration_hours, ODI
 print('\n')
 print(f'Number of Dips less than 4% of baseline: {str(num_dips)}')
 print(f'Total Duration in Hours:  {total_duration_hours}')
-print(f'Oxygen Saturation Index: {ODI}')
+print(f'Oxygen Desaturation Index: {ODI}')
 
 
 # Delete all files in the unzipped folder
